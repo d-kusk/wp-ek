@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mysite_db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+  mysite:
+    image: wordpress
+    environment:
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_HOST: mysite_db:3306
+      WORDPRESS_DB_NAME: mysite
+    ports:
+      - "8080:80"
+    links:
+      - mysite_db
+  elk:
+    image: nshou/elasticsearch-kibana
+    ports:
+      - 9200:9200
+      - 5601:5601
+
