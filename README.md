@@ -22,6 +22,20 @@ or
 $ ctrl + c  // force stop
 ```
 
+### create index template
+
+```
+$ curl -H 'Content-Type: application/json' -XPUT 'http://localhost:9200/_template/packetbeat' -d@packetbeat.template.json
+```
+
+when creation success, return ``{“acknowledged":true}``.
+
+To check the index.
+
+```
+$ curl "localhost:9200/_template/packetbeat?pretty"``
+```
+
 ## Resource
 
 this project is using some docker container.
