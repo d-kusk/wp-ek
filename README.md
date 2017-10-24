@@ -1,4 +1,4 @@
-# WordPress + ELK + Beats
+# WordPress + Elasticsearch + Kibana + Beats
 Environment of WordPress, ELK and Beats using Docker.
 
 ## Usage
@@ -22,11 +22,17 @@ or
 $ ctrl + c  // force stop
 ```
 
-## Resource
+### create index template
 
-this project is using some docker container.
+```
+$ curl -H 'Content-Type: application/json' -XPUT 'http://localhost:9200/_template/packetbeat' -d@packetbeat.template.json
+```
 
-- [wordpress](https://hub.docker.com/_/wordpress/)
-- [mysql](https://hub.docker.com/_/mysql/)
-- [nshou/elasticsearch-kibana](https://hub.docker.com/r/nshou/elasticsearch-kibana/)
-- [proteansec/packetbeat](https://hub.docker.com/r/proteansec/packetbeat/)
+when creation success, return ``{“acknowledged":true}``.
+
+To check the index.
+
+```
+$ curl "localhost:9200/_template/packetbeat?pretty"``
+```
+
